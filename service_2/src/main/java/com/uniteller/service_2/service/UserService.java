@@ -24,7 +24,7 @@ public class UserService {
     public ResponseTemplateVO getUserWithDepartment(Long userId) {
         ResponseTemplateVO vo = new ResponseTemplateVO();
         Employee employee = userRepository.findById(userId).orElse(null);
-        Department department = restTemplate.getForObject("http://localhost:8081/teams/" + employee.getDepartmentId(), Department.class);
+        Department department = restTemplate.getForObject("http://DEPARTMENT-SERVICE/teams/" + employee.getDepartmentId(), Department.class);
         vo.setEmployee(employee);
         vo.setDepartment(department);
         return vo;

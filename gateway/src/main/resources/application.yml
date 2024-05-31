@@ -1,13 +1,33 @@
-
 spring:
+  application:
+    name: gateway
   cloud:
     gateway:
       routes:
-        - id: DEPARTMENT_SERVICE
+        - id: DEPARTMENT-SERVICE
           uri: lb://DEPARTMENT-SERVICE
           predicates:
             - Path=/teams/**
-        - id: EMPLOYEE_SERVICE
-          uri: lb://EMPLOYEE-SERVICE
+        - id: EMPLOYEE-SERVICE
+          uri: http://localhost:8082
           predicates:
             - Path=/employee/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+
+server:
+    port: 8443
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+
+logging:
+  level:
+    org.springframework: TRACE

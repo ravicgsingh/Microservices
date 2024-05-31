@@ -2,6 +2,7 @@ package com.uniteller.service_2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,6 +14,7 @@ public class Service2Application {
     }
 
     @Bean
+    @LoadBalanced
     protected RestTemplate restTemplate(){
         return new RestTemplate();
     }
